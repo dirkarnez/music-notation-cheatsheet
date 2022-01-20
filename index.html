@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://unpkg.com/vextab@2.0.13/releases/vextab.css" />
+<script type="application/javascript" src="https://unpkg.com/vextab@3.0.6/releases/vextab-div.js"></script>
+<style>
+.vexbox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+}
+</style>
+</head>
+<body>
+
+<div class="vexbox">
+  <div id="boo"></div>
+</div>
+
+<script>
+// Write out some VexTab notation
+tab = `
+  tabstave notation=true key=A time=4/4
+
+  notes :q =|: (5/2.5/3.7/4) :8 7-5h6/3 ^3^ 5h6-7/5 ^3^ :q 7V/4 |
+  notes :8 t12p7/4 s5s3/4 :8 3s:16:5-7/5 :q p5/4
+  text :w, |#segno, ,|, :hd, , #tr
+`
+
+// Create VexFlow Renderer element with id #boo.
+renderer = new Vex.Flow.Renderer($('#boo')[0], Vex.Flow.Renderer.Backends.SVG);
+artist = new Artist(10, 30, 800, {scale: 0.7});
+new VexTab(artist).parse(tab)
+artist.render(renderer);
+</script>
+
+</body>
+</html>
