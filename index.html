@@ -1,40 +1,75 @@
-<!DOCTYPE html>
 <html>
-<head>
-<link rel="stylesheet" href="https://unpkg.com/vextab@2.0.13/releases/vextab.css" />
-<script type="application/javascript" src="https://unpkg.com/vextab@3.0.6/releases/vextab-div.js"></script>
-<style>
-.vexbox {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 300px;
-}
-</style>
-</head>
 <body>
+	<script src="https://github.com/opensheetmusicdisplay/opensheetmusicdisplay/releases/download/1.4.5/opensheetmusicdisplay.min.js"></script>
+	<div id="osmdCanvas"></div>
 
-<div class="vexbox">
-  <div id="boo"></div>
-</div>
+	<script>
+		const fileContent = `
+	<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE score-partwise PUBLIC
+    "-//Recordare//DTD MusicXML 4.0 Partwise//EN"
+    "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="4.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name>Music</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+      <attributes>
+        <divisions>1</divisions>
+        <key>
+          <fifths>6</fifths>
+        </key>
+        <time>
+          <beats>4</beats>
+          <beat-type>4</beat-type>
+        </time>
+      </attributes>
+      <note>
+        <pitch>
+          <step>C</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>4</duration>
+        <type>whole</type>
+      </note>
+	  <note>
+        <pitch>
+          <step>C</step>
+		  <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>4</duration>
+        <type>whole</type>
+      </note>
+    </measure>
+  </part>
+</score-partwise>
+`;
 
-<script>
-// Write out some VexTab notation
-tab = `
-  tabstave notation=true key=A time=4/4
+		var osmd = new opensheetmusicdisplay.OpenSheetMusicDisplay("osmdCanvas", {
+			// set options here
+			backend: "svg",
+			drawFromMeasureNumber: 1,
+			drawUpToMeasureNumber: Number.MAX_SAFE_INTEGER // draw all measures, up to the end of the sample
+		});
+		osmd
+			.load(fileContent)
+			.then(
+				function () {
+					//window.osmd = osmd; // give access to osmd object in Browser console, e.g. for osmd.setOptions()
+					//console.log("e.target.result: " + e.target.result);
+					osmd.render();
+					// osmd.cursor.show(); // this would show the cursor on the first note
+					// osmd.cursor.next(); // advance the cursor one note
+				}
+			);
 
-  notes :q =|: (5/2.5/3.7/4) :8 7-5h6/3 ^3^ 5h6-7/5 ^3^ :q 7V/4 |
-  notes :8 t12p7/4 s5s3/4 :8 3s:16:5-7/5 :q p5/4
-  text :w, |#segno, ,|, :hd, , #tr
-`
-
-// Create VexFlow Renderer element with id #boo.
-renderer = new Vex.Flow.Renderer($('#boo')[0], Vex.Flow.Renderer.Backends.SVG);
-artist = new Artist(10, 30, 800, {scale: 0.7});
-new VexTab(artist).parse(tab)
-artist.render(renderer);
-</script>
+	</script>
+	<!-- <script src="fileSelectAndLoadOSMD.js"></script> -->
 
 </body>
+
 </html>
