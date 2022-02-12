@@ -2,24 +2,62 @@
 <body>
 	<script src="https://github.com/opensheetmusicdisplay/opensheetmusicdisplay/releases/download/1.4.5/opensheetmusicdisplay.min.js"></script>
 	<div>
-		<label for="cars">Choose a car:</label>
+		<label for="cars">Circle of fifths:</label>
 
-		<select name="cars" id="cars" onchange="render(this)">
-		  <option value="volvo">Volvo</option>
-		  <option value="saab">Saab</option>
-		  <option value="mercedes">Mercedes</option>
-		  <option value="audi">Audi</option>
+		<select onchange="render(this)">
+			<option></option>
+			<option value="-7" data-diatonic-notes='[{"step":"C" ,"alter": -1},{"step":"D" ,"alter": -1},{"step":"E" ,"alter": -1},{"step":"F" ,"alter": -1},{"step":"G" ,"alter": -1},{"step":"A" ,"alter": -1},{"step":"B" ,"alter": -1}]'>C♭ Major / A♭ minor (7 flats)</option>
+			<option value="-6" data-diatonic-notes='[{"step":"C" ,"alter": -1},{"step":"D" ,"alter": -1},{"step":"E" ,"alter": -1},{"step":"F" ,"alter": 0},{"step":"G" ,"alter": -1},{"step":"A" ,"alter": -1},{"step":"B" ,"alter": -1}]'>G♭ Major / E♭ minor (6 flats)</option>
+			<option value="-5" data-diatonic-notes='[{"step":"C" ,"alter": 0},{"step":"D" ,"alter": -1},{"step":"E" ,"alter": -1},{"step":"F" ,"alter": 0},{"step":"G" ,"alter": -1},{"step":"A" ,"alter": -1},{"step":"B" ,"alter": -1}]'>D♭ Major / B♭ minor (5 flats)</option>
+			<option value="-4" data-diatonic-notes='[{"step":"C" ,"alter": 0},{"step":"D" ,"alter": -1},{"step":"E" ,"alter": -1},{"step":"F" ,"alter": 0},{"step":"G" ,"alter": 0},{"step":"A" ,"alter": -1},{"step":"B" ,"alter": -1}]'>A♭ Major / F minor (4 flats)</option>
+			<option value="-3" data-diatonic-notes='[{"step":"C" ,"alter": 0},{"step":"D" ,"alter": 0},{"step":"E" ,"alter": -1},{"step":"F" ,"alter": 0},{"step":"G" ,"alter": 0},{"step":"A" ,"alter": -1},{"step":"B" ,"alter": -1}]'>E♭ Major / C minor (3 flats)</option>
+			<option value="-2" data-diatonic-notes='[{"step":"C" ,"alter": 0},{"step":"D" ,"alter": 0},{"step":"E" ,"alter": -1},{"step":"F" ,"alter": 0},{"step":"G" ,"alter": 0},{"step":"A" ,"alter": 0},{"step":"B" ,"alter": -1}]'>B♭ Major / G minor (2 flats)</option>
+			<option value="-1" data-diatonic-notes='[{"step":"C" ,"alter": 0},{"step":"D" ,"alter": 0},{"step":"E" ,"alter": 0},{"step":"F" ,"alter": 0},{"step":"G" ,"alter": 0},{"step":"A" ,"alter": 0},{"step":"B" ,"alter": -1}]'>F Major / D minor (1 flat)</option>
+
+			<option value="0" data-diatonic-notes='[{"step":"C" ,"alter": 0},{"step":"D" ,"alter": 0},{"step":"E" ,"alter": 0},{"step":"F" ,"alter": 0},{"step":"G" ,"alter": 0},{"step":"A" ,"alter": 0},{"step":"B" ,"alter": 0}]'>C Major / A minor (no sharp no flat)</option>
+
+			<option value="1" data-diatonic-notes='[{"step":"C" ,"alter": 0},{"step":"D" ,"alter": 0},{"step":"E" ,"alter": 0},{"step":"F" ,"alter": 1},{"step":"G" ,"alter": 0},{"step":"A" ,"alter": 0},{"step":"B" ,"alter": 0}]'>G Major / E minor (1 sharp)</option>
+			<option value="2" data-diatonic-notes='[{"step":"C" ,"alter": 1},{"step":"D" ,"alter": 0},{"step":"E" ,"alter": 0},{"step":"F" ,"alter": 1},{"step":"G" ,"alter": 0},{"step":"A" ,"alter": 0},{"step":"B" ,"alter": 0}]'>D Major / B minor (2 sharps)</option>
+			<option value="3" data-diatonic-notes='[{"step":"C" ,"alter": 1},{"step":"D" ,"alter": 0},{"step":"E" ,"alter": 0},{"step":"F" ,"alter": 1},{"step":"G" ,"alter": 1},{"step":"A" ,"alter": 0},{"step":"B" ,"alter": 0}]'>A Major / F♯ minor (3 sharps)</option>
+			<option value="4" data-diatonic-notes='[{"step":"C" ,"alter": 1},{"step":"D" ,"alter": 1},{"step":"E" ,"alter": 0},{"step":"F" ,"alter": 1},{"step":"G" ,"alter": 1},{"step":"A" ,"alter": 0},{"step":"B" ,"alter": 0}]'>E Major / C♯ minor (4 sharps)</option>
+			<option value="5" data-diatonic-notes='[{"step":"C" ,"alter": 1},{"step":"D" ,"alter": 1},{"step":"E" ,"alter": 0},{"step":"F" ,"alter": 1},{"step":"G" ,"alter": 1},{"step":"A" ,"alter": 1},{"step":"B" ,"alter": 0}]'>B Major / G♯ minor (5 sharps)</option>
+			<option value="6" data-diatonic-notes='[{"step":"C" ,"alter": 1},{"step":"D" ,"alter": 1},{"step":"E" ,"alter": 1},{"step":"F" ,"alter": 1},{"step":"G" ,"alter": 1},{"step":"A" ,"alter": 1},{"step":"B" ,"alter": 0}]'>F♯ Major / D♯ minor (6 sharps)</option>
+			<option value="7" data-diatonic-notes='[{"step":"C" ,"alter": 1},{"step":"D" ,"alter": 1},{"step":"E" ,"alter": 1},{"step":"F" ,"alter": 1},{"step":"G" ,"alter": 1},{"step":"A" ,"alter": 1},{"step":"B" ,"alter": 1}]'>C♯ Major / A♯ minor (7 sharps)</option>
 		</select>
 	</div>
-	<div id="osmdCanvas" class="monitored"></div>
+	<div id="osmdCanvas"></div>
 
 	
 	<script>
 
-function render(e) {
-	const selected = e.value;
-	debugger;
-}
+	function render(e) {
+		const selectedFifth = e.value;
+		if (!selectedFifth) {
+			return;
+		}
+
+		const diatonicNotes = JSON.parse(e.options[e.selectedIndex].dataset.diatonicNotes);
+		var osmd = new opensheetmusicdisplay.OpenSheetMusicDisplay("osmdCanvas", {
+			// set options here
+			backend: "svg",
+			drawFromMeasureNumber: 1,
+			drawUpToMeasureNumber: Number.MAX_SAFE_INTEGER // draw all measures, up to the end of the sample
+		});
+
+		const fileContent = fileContentGenerator(selectedFifth, diatonicNotes);
+
+		osmd
+		.load(fileContent)
+		.then(function () {
+				//window.osmd = osmd; // give access to osmd object in Browser console, e.g. for osmd.setOptions()
+				//console.log("e.target.result: " + e.target.result);
+				osmd.render();
+
+				// osmd.cursor.show(); // this would show the cursor on the first note
+				// osmd.cursor.next(); // advance the cursor one note
+			}
+		);
+	}
 
 const fileContentGenerator = (fifths, diatonicNotes) => {
 	const baseDiatonicNotes = diatonicNotes.map(diatonicNote => [{...diatonicNote, octave: 3}, {...diatonicNote, octave: 1}]);
@@ -50,7 +88,6 @@ const fileContentGenerator = (fifths, diatonicNotes) => {
         </score-part>
     </part-list>
     <part id="P1">
-		
 		${fullPianoDiatonicNotes.map((fullPianoDiatonicNote, index) => {
 			const measureNumber = index + 1;
 			return `
@@ -89,7 +126,7 @@ const fileContentGenerator = (fifths, diatonicNotes) => {
 					<staff>1</staff>
 					<lyric>
 						<syllabic>single</syllabic>
-						<text>${`${fullPianoDiatonicNote[0].step}${fullPianoDiatonicNote[0].octave}` + (fullPianoDiatonicNote[0].alter != 0 ? fullPianoDiatonicNote[0].alter : "")}</text>
+						<text>${`${fullPianoDiatonicNote[0].step}${(fullPianoDiatonicNote[0].alter != 0 ? (fullPianoDiatonicNote[0].alter == "1" ? "♯" : fullPianoDiatonicNote[0].alter == "-1" ? "♭" : "") : "")}${fullPianoDiatonicNote[0].octave}`}</text>
 					</lyric>
 				</note>
 				<backup>
@@ -109,7 +146,7 @@ const fileContentGenerator = (fifths, diatonicNotes) => {
 					<staff>2</staff>
 					<lyric>
 						<syllabic>single</syllabic>
-						<text>${`${fullPianoDiatonicNote[1].step}${fullPianoDiatonicNote[1].octave}` + (fullPianoDiatonicNote[1].alter != 0 ? fullPianoDiatonicNote[1].alter : "")}</text>
+						<text>${`${fullPianoDiatonicNote[1].step}${(fullPianoDiatonicNote[1].alter != 0 ? (fullPianoDiatonicNote[1].alter == "1" ? "♯" : fullPianoDiatonicNote[1].alter == "-1" ? "♭" : "") : "")}${fullPianoDiatonicNote[1].octave}`}</text>
 					</lyric>
 				</note>
 			</measure>	
@@ -120,30 +157,7 @@ const fileContentGenerator = (fifths, diatonicNotes) => {
 </score-partwise>
 `
 };
-
-	   var osmd = new opensheetmusicdisplay.OpenSheetMusicDisplay("osmdCanvas", {
-			// set options here
-			backend: "svg",
-			drawFromMeasureNumber: 1,
-			drawUpToMeasureNumber: Number.MAX_SAFE_INTEGER // draw all measures, up to the end of the sample
-		});
-
-		const fileContent = fileContentGenerator(0, [{step: "C", alter: 0}, {step: "D", alter: 0}, {step: "E", alter: 0}, {step: "F", alter: 0}, {step: "G", alter: 0}, {step: "A", alter: 0}, {step: "B", alter: 0}]);
-		debugger;
-		osmd
-		.load(fileContent)
-		.then(function () {
-				//window.osmd = osmd; // give access to osmd object in Browser console, e.g. for osmd.setOptions()
-				//console.log("e.target.result: " + e.target.result);
-				osmd.render();
-
-				// osmd.cursor.show(); // this would show the cursor on the first note
-				// osmd.cursor.next(); // advance the cursor one note
-			}
-		);
 	</script>
-	<!-- <script src="fileSelectAndLoadOSMD.js"></script> -->
-
 </body>
 
 </html>
