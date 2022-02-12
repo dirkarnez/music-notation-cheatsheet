@@ -1,72 +1,146 @@
 <html>
 <body>
 	<script src="https://github.com/opensheetmusicdisplay/opensheetmusicdisplay/releases/download/1.4.5/opensheetmusicdisplay.min.js"></script>
-	<div id="osmdCanvas"></div>
+	<div>
+		<label for="cars">Choose a car:</label>
 
+		<select name="cars" id="cars" onchange="render(this)">
+		  <option value="volvo">Volvo</option>
+		  <option value="saab">Saab</option>
+		  <option value="mercedes">Mercedes</option>
+		  <option value="audi">Audi</option>
+		</select>
+	</div>
+	<div id="osmdCanvas" class="monitored"></div>
+
+	
 	<script>
-		const fileContent = `
-	<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE score-partwise PUBLIC
-    "-//Recordare//DTD MusicXML 4.0 Partwise//EN"
-    "http://www.musicxml.org/dtds/partwise.dtd">
-<score-partwise version="4.0">
-  <part-list>
-    <score-part id="P1">
-      <part-name>Music</part-name>
-    </score-part>
-  </part-list>
-  <part id="P1">
-    <measure number="1">
-      <attributes>
-        <divisions>1</divisions>
-        <key>
-          <fifths>6</fifths>
-        </key>
-        <time>
-          <beats>4</beats>
-          <beat-type>4</beat-type>
-        </time>
-      </attributes>
-      <note>
-        <pitch>
-          <step>C</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>4</duration>
-        <type>whole</type>
-      </note>
-	  <note>
-        <pitch>
-          <step>C</step>
-		  <alter>1</alter>
-          <octave>4</octave>
-        </pitch>
-        <duration>4</duration>
-        <type>whole</type>
-      </note>
-    </measure>
-  </part>
-</score-partwise>
-`;
 
-		var osmd = new opensheetmusicdisplay.OpenSheetMusicDisplay("osmdCanvas", {
+function render(e) {
+	const selected = e.value;
+	debugger;
+}
+
+const fileContentGenerator = (fifths, diatonicNotes) => {
+	const baseDiatonicNotes = diatonicNotes.map(diatonicNote => [{...diatonicNote, octave: 3}, {...diatonicNote, octave: 1}]);
+	const fullPianoDiatonicNotes = [
+		...baseDiatonicNotes, // C3, C1
+		...baseDiatonicNotes.map(baseDiatonicNote => [{...baseDiatonicNote[0], octave: 4}, {...baseDiatonicNote[1], octave: 2}]), // C4, C2
+		...baseDiatonicNotes.map(baseDiatonicNote => [{...baseDiatonicNote[0], octave: 5}, {...baseDiatonicNote[1], octave: 3}]), // C5, C3 
+		...baseDiatonicNotes.map(baseDiatonicNote => [{...baseDiatonicNote[0], octave: 6}, {...baseDiatonicNote[1], octave: 4}]), // C6, C4
+		...baseDiatonicNotes.map(baseDiatonicNote => [{...baseDiatonicNote[0], octave: 7}, {...baseDiatonicNote[1], octave: 5}]), // C7, C5
+		baseDiatonicNotes.map(baseDiatonicNote => [{...baseDiatonicNote[0], octave: 8}, {...baseDiatonicNote[1], octave: 6}])[0], // C8, C6
+	];
+	return `
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 3.1 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="3.1">
+    <part-list>
+        <score-part id="P1">
+            <part-name>Piano</part-name>
+            <score-instrument id="P1-I1">
+                <instrument-name>Piano</instrument-name>
+            </score-instrument>
+            <midi-device id="P1-I1" port="1"></midi-device>
+            <midi-instrument id="P1-I1">
+                <midi-channel>1</midi-channel>
+                <midi-program>1</midi-program>
+                <pan>0</pan>
+            </midi-instrument>
+        </score-part>
+    </part-list>
+    <part id="P1">
+		
+		${fullPianoDiatonicNotes.map((fullPianoDiatonicNote, index) => {
+			const measureNumber = index + 1;
+			return `
+			<measure number="${measureNumber}">${(measureNumber == 1 ? `
+				<attributes>
+					<divisions>2</divisions>
+					<key>
+						<fifths>${fifths}</fifths>
+					</key>
+					<time>
+						<beats>1</beats>
+						<beat-type>4</beat-type>
+					</time>
+					<staves>2</staves>
+					<clef number="1">
+						<sign>G</sign>
+						<line>2</line>
+					</clef>
+					<clef number="2">
+						<sign>F</sign>
+						<line>4</line>
+					</clef>
+				</attributes>
+			`  : "")}
+				<note>
+					<pitch>
+						<step>${fullPianoDiatonicNote[0].step}</step>${(fullPianoDiatonicNote[0].octave != 0 ? `
+						<octave>${fullPianoDiatonicNote[0].octave}</octave>
+						` : "")}${(fullPianoDiatonicNote[0].alter != 0 ? `
+						<alter>${fullPianoDiatonicNote[0].alter}</alter>
+						` : "")}
+					</pitch>
+					<duration>2</duration>
+					<voice>1</voice>
+					<type>quarter</type>
+					<staff>1</staff>
+					<lyric>
+						<syllabic>single</syllabic>
+						<text>${`${fullPianoDiatonicNote[0].step}${fullPianoDiatonicNote[0].octave}` + (fullPianoDiatonicNote[0].alter != 0 ? fullPianoDiatonicNote[0].alter : "")}</text>
+					</lyric>
+				</note>
+				<backup>
+					<duration>2</duration>
+				</backup>
+				<note>
+					<pitch>
+						<step>${fullPianoDiatonicNote[1].step}</step>${(fullPianoDiatonicNote[1].octave != 0 ? `
+						<octave>${fullPianoDiatonicNote[1].octave}</octave>
+						` : "")}${(fullPianoDiatonicNote[1].alter != 0 ? `
+						<alter>${fullPianoDiatonicNote[1].alter}</alter>
+						` : "")}
+					</pitch>
+					<duration>2</duration>
+					<voice>5</voice>
+					<type>quarter</type>
+					<staff>2</staff>
+					<lyric>
+						<syllabic>single</syllabic>
+						<text>${`${fullPianoDiatonicNote[1].step}${fullPianoDiatonicNote[1].octave}` + (fullPianoDiatonicNote[1].alter != 0 ? fullPianoDiatonicNote[1].alter : "")}</text>
+					</lyric>
+				</note>
+			</measure>	
+		`
+		}).join("\n")}
+       
+    </part>
+</score-partwise>
+`
+};
+
+	   var osmd = new opensheetmusicdisplay.OpenSheetMusicDisplay("osmdCanvas", {
 			// set options here
 			backend: "svg",
 			drawFromMeasureNumber: 1,
 			drawUpToMeasureNumber: Number.MAX_SAFE_INTEGER // draw all measures, up to the end of the sample
 		});
-		osmd
-			.load(fileContent)
-			.then(
-				function () {
-					//window.osmd = osmd; // give access to osmd object in Browser console, e.g. for osmd.setOptions()
-					//console.log("e.target.result: " + e.target.result);
-					osmd.render();
-					// osmd.cursor.show(); // this would show the cursor on the first note
-					// osmd.cursor.next(); // advance the cursor one note
-				}
-			);
 
+		const fileContent = fileContentGenerator(0, [{step: "C", alter: 0}, {step: "D", alter: 0}, {step: "E", alter: 0}, {step: "F", alter: 0}, {step: "G", alter: 0}, {step: "A", alter: 0}, {step: "B", alter: 0}]);
+		debugger;
+		osmd
+		.load(fileContent)
+		.then(function () {
+				//window.osmd = osmd; // give access to osmd object in Browser console, e.g. for osmd.setOptions()
+				//console.log("e.target.result: " + e.target.result);
+				osmd.render();
+
+				// osmd.cursor.show(); // this would show the cursor on the first note
+				// osmd.cursor.next(); // advance the cursor one note
+			}
+		);
 	</script>
 	<!-- <script src="fileSelectAndLoadOSMD.js"></script> -->
 
