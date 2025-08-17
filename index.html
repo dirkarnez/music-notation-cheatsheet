@@ -1,34 +1,79 @@
-<html>
-<body>
-	<script src="https://github.com/opensheetmusicdisplay/opensheetmusicdisplay/releases/download/1.4.5/opensheetmusicdisplay.min.js"></script>
-	<div>
-		<label for="cars">Circle of fifths:</label>
+<!DOCTYPE html>
+<html lang="en">
 
-		<select onchange="render(this)">
-			<option></option>
-			<option value="-7" data-diatonic-notes='[{"step":"C" ,"alter": -1},{"step":"D" ,"alter": -1},{"step":"E" ,"alter": -1},{"step":"F" ,"alter": -1},{"step":"G" ,"alter": -1},{"step":"A" ,"alter": -1},{"step":"B" ,"alter": -1}]'>C♭ Major / A♭ minor (7 flats)</option>
-			<option value="-6" data-diatonic-notes='[{"step":"C" ,"alter": -1},{"step":"D" ,"alter": -1},{"step":"E" ,"alter": -1},{"step":"F" ,"alter": 0},{"step":"G" ,"alter": -1},{"step":"A" ,"alter": -1},{"step":"B" ,"alter": -1}]'>G♭ Major / E♭ minor (6 flats)</option>
-			<option value="-5" data-diatonic-notes='[{"step":"C" ,"alter": 0},{"step":"D" ,"alter": -1},{"step":"E" ,"alter": -1},{"step":"F" ,"alter": 0},{"step":"G" ,"alter": -1},{"step":"A" ,"alter": -1},{"step":"B" ,"alter": -1}]'>D♭ Major / B♭ minor (5 flats)</option>
-			<option value="-4" data-diatonic-notes='[{"step":"C" ,"alter": 0},{"step":"D" ,"alter": -1},{"step":"E" ,"alter": -1},{"step":"F" ,"alter": 0},{"step":"G" ,"alter": 0},{"step":"A" ,"alter": -1},{"step":"B" ,"alter": -1}]'>A♭ Major / F minor (4 flats)</option>
-			<option value="-3" data-diatonic-notes='[{"step":"C" ,"alter": 0},{"step":"D" ,"alter": 0},{"step":"E" ,"alter": -1},{"step":"F" ,"alter": 0},{"step":"G" ,"alter": 0},{"step":"A" ,"alter": -1},{"step":"B" ,"alter": -1}]'>E♭ Major / C minor (3 flats)</option>
-			<option value="-2" data-diatonic-notes='[{"step":"C" ,"alter": 0},{"step":"D" ,"alter": 0},{"step":"E" ,"alter": -1},{"step":"F" ,"alter": 0},{"step":"G" ,"alter": 0},{"step":"A" ,"alter": 0},{"step":"B" ,"alter": -1}]'>B♭ Major / G minor (2 flats)</option>
-			<option value="-1" data-diatonic-notes='[{"step":"C" ,"alter": 0},{"step":"D" ,"alter": 0},{"step":"E" ,"alter": 0},{"step":"F" ,"alter": 0},{"step":"G" ,"alter": 0},{"step":"A" ,"alter": 0},{"step":"B" ,"alter": -1}]'>F Major / D minor (1 flat)</option>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script
+		src="https://github.com/opensheetmusicdisplay/opensheetmusicdisplay/releases/download/1.4.5/opensheetmusicdisplay.min.js"></script>
+</head>
+<div class="container-fluid p-5">
+	<div class="row">
+		<div class="col">
+			<label for="circle-of-fifths">Circle of fifths:</label>
+			<select id="circle-of-fifths" class="form-select" onchange="render(this)">
+				<option></option>
+				<option value="-7"
+					data-diatonic-notes='[{"step":"C" ,"alter": -1},{"step":"D" ,"alter": -1},{"step":"E" ,"alter": -1},{"step":"F" ,"alter": -1},{"step":"G" ,"alter": -1},{"step":"A" ,"alter": -1},{"step":"B" ,"alter": -1}]'>
+					C♭ Major / A♭ minor (7 flats)</option>
+				<option value="-6"
+					data-diatonic-notes='[{"step":"C" ,"alter": -1},{"step":"D" ,"alter": -1},{"step":"E" ,"alter": -1},{"step":"F" ,"alter": 0},{"step":"G" ,"alter": -1},{"step":"A" ,"alter": -1},{"step":"B" ,"alter": -1}]'>
+					G♭ Major / E♭ minor (6 flats)</option>
+				<option value="-5"
+					data-diatonic-notes='[{"step":"C" ,"alter": 0},{"step":"D" ,"alter": -1},{"step":"E" ,"alter": -1},{"step":"F" ,"alter": 0},{"step":"G" ,"alter": -1},{"step":"A" ,"alter": -1},{"step":"B" ,"alter": -1}]'>
+					D♭ Major / B♭ minor (5 flats)</option>
+				<option value="-4"
+					data-diatonic-notes='[{"step":"C" ,"alter": 0},{"step":"D" ,"alter": -1},{"step":"E" ,"alter": -1},{"step":"F" ,"alter": 0},{"step":"G" ,"alter": 0},{"step":"A" ,"alter": -1},{"step":"B" ,"alter": -1}]'>
+					A♭ Major / F minor (4 flats)</option>
+				<option value="-3"
+					data-diatonic-notes='[{"step":"C" ,"alter": 0},{"step":"D" ,"alter": 0},{"step":"E" ,"alter": -1},{"step":"F" ,"alter": 0},{"step":"G" ,"alter": 0},{"step":"A" ,"alter": -1},{"step":"B" ,"alter": -1}]'>
+					E♭ Major / C minor (3 flats)</option>
+				<option value="-2"
+					data-diatonic-notes='[{"step":"C" ,"alter": 0},{"step":"D" ,"alter": 0},{"step":"E" ,"alter": -1},{"step":"F" ,"alter": 0},{"step":"G" ,"alter": 0},{"step":"A" ,"alter": 0},{"step":"B" ,"alter": -1}]'>
+					B♭ Major / G minor (2 flats)</option>
+				<option value="-1"
+					data-diatonic-notes='[{"step":"C" ,"alter": 0},{"step":"D" ,"alter": 0},{"step":"E" ,"alter": 0},{"step":"F" ,"alter": 0},{"step":"G" ,"alter": 0},{"step":"A" ,"alter": 0},{"step":"B" ,"alter": -1}]'>
+					F Major / D minor (1 flat)</option>
 
-			<option value="0" data-diatonic-notes='[{"step":"C" ,"alter": 0},{"step":"D" ,"alter": 0},{"step":"E" ,"alter": 0},{"step":"F" ,"alter": 0},{"step":"G" ,"alter": 0},{"step":"A" ,"alter": 0},{"step":"B" ,"alter": 0}]'>C Major / A minor (no sharp no flat)</option>
+				<option value="0"
+					data-diatonic-notes='[{"step":"C" ,"alter": 0},{"step":"D" ,"alter": 0},{"step":"E" ,"alter": 0},{"step":"F" ,"alter": 0},{"step":"G" ,"alter": 0},{"step":"A" ,"alter": 0},{"step":"B" ,"alter": 0}]'>
+					C Major / A minor (no sharp no flat)</option>
 
-			<option value="1" data-diatonic-notes='[{"step":"C" ,"alter": 0},{"step":"D" ,"alter": 0},{"step":"E" ,"alter": 0},{"step":"F" ,"alter": 1},{"step":"G" ,"alter": 0},{"step":"A" ,"alter": 0},{"step":"B" ,"alter": 0}]'>G Major / E minor (1 sharp)</option>
-			<option value="2" data-diatonic-notes='[{"step":"C" ,"alter": 1},{"step":"D" ,"alter": 0},{"step":"E" ,"alter": 0},{"step":"F" ,"alter": 1},{"step":"G" ,"alter": 0},{"step":"A" ,"alter": 0},{"step":"B" ,"alter": 0}]'>D Major / B minor (2 sharps)</option>
-			<option value="3" data-diatonic-notes='[{"step":"C" ,"alter": 1},{"step":"D" ,"alter": 0},{"step":"E" ,"alter": 0},{"step":"F" ,"alter": 1},{"step":"G" ,"alter": 1},{"step":"A" ,"alter": 0},{"step":"B" ,"alter": 0}]'>A Major / F♯ minor (3 sharps)</option>
-			<option value="4" data-diatonic-notes='[{"step":"C" ,"alter": 1},{"step":"D" ,"alter": 1},{"step":"E" ,"alter": 0},{"step":"F" ,"alter": 1},{"step":"G" ,"alter": 1},{"step":"A" ,"alter": 0},{"step":"B" ,"alter": 0}]'>E Major / C♯ minor (4 sharps)</option>
-			<option value="5" data-diatonic-notes='[{"step":"C" ,"alter": 1},{"step":"D" ,"alter": 1},{"step":"E" ,"alter": 0},{"step":"F" ,"alter": 1},{"step":"G" ,"alter": 1},{"step":"A" ,"alter": 1},{"step":"B" ,"alter": 0}]'>B Major / G♯ minor (5 sharps)</option>
-			<option value="6" data-diatonic-notes='[{"step":"C" ,"alter": 1},{"step":"D" ,"alter": 1},{"step":"E" ,"alter": 1},{"step":"F" ,"alter": 1},{"step":"G" ,"alter": 1},{"step":"A" ,"alter": 1},{"step":"B" ,"alter": 0}]'>F♯ Major / D♯ minor (6 sharps)</option>
-			<option value="7" data-diatonic-notes='[{"step":"C" ,"alter": 1},{"step":"D" ,"alter": 1},{"step":"E" ,"alter": 1},{"step":"F" ,"alter": 1},{"step":"G" ,"alter": 1},{"step":"A" ,"alter": 1},{"step":"B" ,"alter": 1}]'>C♯ Major / A♯ minor (7 sharps)</option>
-		</select>
+				<option value="1"
+					data-diatonic-notes='[{"step":"C" ,"alter": 0},{"step":"D" ,"alter": 0},{"step":"E" ,"alter": 0},{"step":"F" ,"alter": 1},{"step":"G" ,"alter": 0},{"step":"A" ,"alter": 0},{"step":"B" ,"alter": 0}]'>
+					G Major / E minor (1 sharp)</option>
+				<option value="2"
+					data-diatonic-notes='[{"step":"C" ,"alter": 1},{"step":"D" ,"alter": 0},{"step":"E" ,"alter": 0},{"step":"F" ,"alter": 1},{"step":"G" ,"alter": 0},{"step":"A" ,"alter": 0},{"step":"B" ,"alter": 0}]'>
+					D Major / B minor (2 sharps)</option>
+				<option value="3"
+					data-diatonic-notes='[{"step":"C" ,"alter": 1},{"step":"D" ,"alter": 0},{"step":"E" ,"alter": 0},{"step":"F" ,"alter": 1},{"step":"G" ,"alter": 1},{"step":"A" ,"alter": 0},{"step":"B" ,"alter": 0}]'>
+					A Major / F♯ minor (3 sharps)</option>
+				<option value="4"
+					data-diatonic-notes='[{"step":"C" ,"alter": 1},{"step":"D" ,"alter": 1},{"step":"E" ,"alter": 0},{"step":"F" ,"alter": 1},{"step":"G" ,"alter": 1},{"step":"A" ,"alter": 0},{"step":"B" ,"alter": 0}]'>
+					E Major / C♯ minor (4 sharps)</option>
+				<option value="5"
+					data-diatonic-notes='[{"step":"C" ,"alter": 1},{"step":"D" ,"alter": 1},{"step":"E" ,"alter": 0},{"step":"F" ,"alter": 1},{"step":"G" ,"alter": 1},{"step":"A" ,"alter": 1},{"step":"B" ,"alter": 0}]'>
+					B Major / G♯ minor (5 sharps)</option>
+				<option value="6"
+					data-diatonic-notes='[{"step":"C" ,"alter": 1},{"step":"D" ,"alter": 1},{"step":"E" ,"alter": 1},{"step":"F" ,"alter": 1},{"step":"G" ,"alter": 1},{"step":"A" ,"alter": 1},{"step":"B" ,"alter": 0}]'>
+					F♯ Major / D♯ minor (6 sharps)</option>
+				<option value="7"
+					data-diatonic-notes='[{"step":"C" ,"alter": 1},{"step":"D" ,"alter": 1},{"step":"E" ,"alter": 1},{"step":"F" ,"alter": 1},{"step":"G" ,"alter": 1},{"step":"A" ,"alter": 1},{"step":"B" ,"alter": 1}]'>
+					C♯ Major / A♯ minor (7 sharps)</option>
+			</select>
+		</div>
 	</div>
-	<div id="osmdCanvas"></div>
+	<div class="row">
+		<div class="col">
+			<div id="osmdCanvas"></div>
+		</div>
+	</div>
+</div>
 
-	
-	<script>
+<script>
 
 	function render(e) {
 		const selectedFifth = e.value;
@@ -48,8 +93,8 @@
 		const fileContent = fileContentGenerator(selectedFifth, diatonicNotes);
 
 		osmd
-		.load(fileContent)
-		.then(function () {
+			.load(fileContent)
+			.then(function () {
 				//window.osmd = osmd; // give access to osmd object in Browser console, e.g. for osmd.setOptions()
 				//console.log("e.target.result: " + e.target.result);
 				osmd.render();
@@ -57,20 +102,20 @@
 				// osmd.cursor.show(); // this would show the cursor on the first note
 				// osmd.cursor.next(); // advance the cursor one note
 			}
-		);
+			);
 	}
 
-const fileContentGenerator = (fifths, diatonicNotes) => {
-	const baseDiatonicNotes = diatonicNotes.map(diatonicNote => [{...diatonicNote, octave: 3}, {...diatonicNote, octave: 1}]);
-	const fullPianoDiatonicNotes = [
-		...baseDiatonicNotes, // C3, C1
-		...baseDiatonicNotes.map(baseDiatonicNote => [{...baseDiatonicNote[0], octave: 4}, {...baseDiatonicNote[1], octave: 2}]), // C4, C2
-		...baseDiatonicNotes.map(baseDiatonicNote => [{...baseDiatonicNote[0], octave: 5}, {...baseDiatonicNote[1], octave: 3}]), // C5, C3 
-		...baseDiatonicNotes.map(baseDiatonicNote => [{...baseDiatonicNote[0], octave: 6}, {...baseDiatonicNote[1], octave: 4}]), // C6, C4
-		...baseDiatonicNotes.map(baseDiatonicNote => [{...baseDiatonicNote[0], octave: 7}, {...baseDiatonicNote[1], octave: 5}]), // C7, C5
-		baseDiatonicNotes.map(baseDiatonicNote => [{...baseDiatonicNote[0], octave: 8}, {...baseDiatonicNote[1], octave: 6}])[0], // C8, C6
-	];
-	return `
+	const fileContentGenerator = (fifths, diatonicNotes) => {
+		const baseDiatonicNotes = diatonicNotes.map(diatonicNote => [{ ...diatonicNote, octave: 3 }, { ...diatonicNote, octave: 1 }]);
+		const fullPianoDiatonicNotes = [
+			...baseDiatonicNotes, // C3, C1
+			...baseDiatonicNotes.map(baseDiatonicNote => [{ ...baseDiatonicNote[0], octave: 4 }, { ...baseDiatonicNote[1], octave: 2 }]), // C4, C2
+			...baseDiatonicNotes.map(baseDiatonicNote => [{ ...baseDiatonicNote[0], octave: 5 }, { ...baseDiatonicNote[1], octave: 3 }]), // C5, C3 
+			...baseDiatonicNotes.map(baseDiatonicNote => [{ ...baseDiatonicNote[0], octave: 6 }, { ...baseDiatonicNote[1], octave: 4 }]), // C6, C4
+			...baseDiatonicNotes.map(baseDiatonicNote => [{ ...baseDiatonicNote[0], octave: 7 }, { ...baseDiatonicNote[1], octave: 5 }]), // C7, C5
+			baseDiatonicNotes.map(baseDiatonicNote => [{ ...baseDiatonicNote[0], octave: 8 }, { ...baseDiatonicNote[1], octave: 6 }])[0], // C8, C6
+		];
+		return `
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 3.1 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
 <score-partwise version="3.1">
@@ -157,8 +202,8 @@ const fileContentGenerator = (fifths, diatonicNotes) => {
     </part>
 </score-partwise>
 `
-};
-	</script>
+	};
+</script>
 </body>
 
 </html>
